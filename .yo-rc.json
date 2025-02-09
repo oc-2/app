@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "app",
+    "buildTool": "maven",
+    "cacheProvider": null,
+    "clientFramework": "vue",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1738960932333,
+    "databaseType": "no",
+    "devDatabaseType": null,
+    "enableHibernateCache": null,
+    "enableTranslation": false,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.8.0",
+    "jwtSecretKey": "NjQ4ODdmYTBiZDNkNDY0YTk3MGE3ZjYzZTVlZWQwNDk5NWRjODUxYzdmNGYyYTZiMWU5OGJlNGMwYjc1NDhiNmMwNDBhNTU2NWY2MjY2ZTAwMGU0YjUzNzY3YzgwM2I0ZjM4NzI1ZDI1MWZhZWY5YjMyYjI0MzRkYWFjMDk4YjQ=",
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "en",
+    "packageName": "com.app",
+    "prodDatabaseType": null,
+    "reactive": true,
+    "serverPort": null,
+    "serviceDiscoveryType": null,
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": false
+  }
+}
