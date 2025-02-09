@@ -54,7 +54,8 @@ jobs:
         id: push
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./.devcontainer  # Set the context to the .devcontainer folder
+          file: ./.devcontainer/Dockerfile  # Specify the Dockerfile location
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
