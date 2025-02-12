@@ -49,6 +49,10 @@
               <span class="no-bold">Administration</span>
             </span>
           </template>
+          <b-dropdown-item to="/admin/user-management" active-class="active">
+            <font-awesome-icon icon="users" />
+            <span>User management</span>
+          </b-dropdown-item>
           <b-dropdown-item v-if="openAPIEnabled" to="/admin/docs" active-class="active">
             <font-awesome-icon icon="book" />
             <span>API</span>
@@ -69,6 +73,14 @@
               <span class="no-bold">Account</span>
             </span>
           </template>
+          <b-dropdown-item data-cy="settings" to="/account/settings" v-if="authenticated" active-class="active">
+            <font-awesome-icon icon="wrench" />
+            <span>Settings</span>
+          </b-dropdown-item>
+          <b-dropdown-item data-cy="passwordItem" to="/account/password" v-if="authenticated" active-class="active">
+            <font-awesome-icon icon="lock" />
+            <span>Password</span>
+          </b-dropdown-item>
           <b-dropdown-item data-cy="logout" v-if="authenticated" @click="logout()" id="logout" active-class="active">
             <font-awesome-icon icon="sign-out-alt" />
             <span>Sign out</span>
@@ -76,6 +88,10 @@
           <b-dropdown-item data-cy="login" v-if="!authenticated" @click="openLogin()" id="login" active-class="active">
             <font-awesome-icon icon="sign-in-alt" />
             <span>Sign in</span>
+          </b-dropdown-item>
+          <b-dropdown-item data-cy="register" to="/register" id="register" v-if="!authenticated" active-class="active">
+            <font-awesome-icon icon="user-plus" />
+            <span>Register</span>
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>

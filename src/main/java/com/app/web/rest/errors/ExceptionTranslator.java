@@ -11,6 +11,8 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.ConcurrencyFailureException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -20,7 +22,9 @@ import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.lang.Nullable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,6 +46,7 @@ import tech.jhipster.web.util.HeaderUtil;
  * The error response follows RFC7807 - Problem Details for HTTP APIs (https://tools.ietf.org/html/rfc7807).
  */
 @ControllerAdvice
+@Component("jhiExceptionTranslator")
 public class ExceptionTranslator extends ResponseEntityExceptionHandler implements ExceptionTranslation {
 
     private static final String FIELD_ERRORS_KEY = "fieldErrors";
@@ -88,6 +93,21 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler implemen
     }
 
     private ProblemDetailWithCause getProblemDetailWithCause(Throwable ex) {
+        if (ex instanceof com.app.service.UsernameAlreadyUsedException) return (ProblemDetailWithCause) new LoginAlreadyUsedException()
+            .getBody();
+        if (ex instanceof com.app.service.EmailAlreadyUsedException) return (ProblemDetailWithCause) new EmailAlreadyUsedException()
+            .getBody();
+        if (ex instanceof com.app.service.InvalidPasswordException) return (ProblemDetailWithCause) new InvalidPasswordException()
+            .getBody();
+
+        if (ex instanceof AuthenticationException) {
+            // Ensure no information about existing users is revealed via failed authentication attempts
+            return ProblemDetailWithCauseBuilder.instance()
+                .withStatus(toStatus(ex).value())
+                .withTitle("Unauthorized")
+                .withDetail("Invalid credentials")
+                .build();
+        }
         if (
             ex instanceof ErrorResponseException exp && exp.getBody() instanceof ProblemDetailWithCause problemDetailWithCause
         ) return problemDetailWithCause;
@@ -179,6 +199,8 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler implemen
     private String getMappedMessageKey(Throwable err) {
         if (err instanceof MethodArgumentNotValidException) {
             return ErrorConstants.ERR_VALIDATION;
+        } else if (err instanceof ConcurrencyFailureException || err.getCause() instanceof ConcurrencyFailureException) {
+            return ErrorConstants.ERR_CONCURRENCY_FAILURE;
         } else if (err instanceof WebExchangeBindException) {
             return ErrorConstants.ERR_VALIDATION;
         }
@@ -194,6 +216,7 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler implemen
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
         if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
             if (err instanceof HttpMessageConversionException) return "Unable to convert http message";
+            if (err instanceof DataAccessException) return "Failure during data access";
             if (containsPackageName(err.getMessage())) return "Unexpected runtime exception";
         }
         return err.getCause() != null ? err.getCause().getMessage() : err.getMessage();
@@ -202,6 +225,7 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler implemen
     private HttpStatus getMappedStatus(Throwable err) {
         // Where we disagree with Spring defaults
         if (err instanceof AccessDeniedException) return HttpStatus.FORBIDDEN;
+        if (err instanceof ConcurrencyFailureException) return HttpStatus.CONFLICT;
         if (err instanceof BadCredentialsException) return HttpStatus.UNAUTHORIZED;
         if (err instanceof UsernameNotFoundException) return HttpStatus.UNAUTHORIZED;
         return null;

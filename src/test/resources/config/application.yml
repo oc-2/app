@@ -16,6 +16,9 @@
 spring:
   application:
     name: app
+  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
+  liquibase:
+    contexts: test
   jackson:
     serialization:
       write-durations-as-timestamps: false
@@ -26,11 +29,6 @@ spring:
   messages:
     basename: i18n/messages
   security:
-    user:
-      name: test
-      password: test
-      roles:
-        - USER
     oauth2:
       resourceserver:
         jwt:
@@ -77,7 +75,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: NjQ4ODdmYTBiZDNkNDY0YTk3MGE3ZjYzZTVlZWQwNDk5NWRjODUxYzdmNGYyYTZiMWU5OGJlNGMwYjc1NDhiNmMwNDBhNTU2NWY2MjY2ZTAwMGU0YjUzNzY3YzgwM2I0ZjM4NzI1ZDI1MWZhZWY5YjMyYjI0MzRkYWFjMDk4YjQ=
+        base64-secret: NTA1MGQ5ZDFlYmU4NzhmM2JkYzg3YzVlOTc5ZmIzM2U0ODI0NWQwOTY2YTI5NzUyMWQ2NDUwM2VmZTk3NzFjMDk1ZWVkMzNlMjdmYTM1NTdhMTBhNmNkNzkzYjM4YTBiZjQ1ZTYzODc2MzRiZmFmMzViMmRhOTQ3YzY2MDlmZGI=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 86400

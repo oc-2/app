@@ -3,6 +3,7 @@ package com.app.security.jwt;
 import static com.app.security.SecurityUtils.AUTHORITIES_KEY;
 import static com.app.security.SecurityUtils.JWT_ALGORITHM;
 
+import com.app.repository.UserRepository;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.util.Base64;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -32,6 +33,9 @@ public class JwtAuthenticationTestUtils {
     // TODO switch to MockitoSpyBean https://github.com/spring-projects/spring-framework/issues/33941
     @MockBean
     private ReactiveUserDetailsService userDetailsService;
+
+    @MockBean
+    private UserRepository userRepository;
 
     public static String createValidToken(String jwtKey) {
         return createValidTokenForUser(jwtKey, "anonymous");

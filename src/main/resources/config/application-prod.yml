@@ -31,6 +31,19 @@ spring:
       enabled: false
     livereload:
       enabled: false
+  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
+  liquibase:
+    contexts: prod
+    url: jdbc:postgresql://localhost:5432/app
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/app
+    username: app
+    password:
   thymeleaf:
     cache: true
 
@@ -79,10 +92,12 @@ jhipster:
         # - In the Consul configserver
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: NjQ4ODdmYTBiZDNkNDY0YTk3MGE3ZjYzZTVlZWQwNDk5NWRjODUxYzdmNGYyYTZiMWU5OGJlNGMwYjc1NDhiNmMwNDBhNTU2NWY2MjY2ZTAwMGU0YjUzNzY3YzgwM2I0ZjM4NzI1ZDI1MWZhZWY5YjMyYjI0MzRkYWFjMDk4YjQ=
+        base64-secret: NTA1MGQ5ZDFlYmU4NzhmM2JkYzg3YzVlOTc5ZmIzM2U0ODI0NWQwOTY2YTI5NzUyMWQ2NDUwM2VmZTk3NzFjMDk1ZWVkMzNlMjdmYTM1NTdhMTBhNmNkNzkzYjM4YTBiZjQ1ZTYzODc2MzRiZmFmMzViMmRhOTQ3YzY2MDlmZGI=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    base-url: http://my-server-url-to-change # Modify according to your server's URL
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
