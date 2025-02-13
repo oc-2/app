@@ -26,11 +26,11 @@ jobs:
         run: java -version
 
       - name: Set up Maven Wrapper
-        run: chmod +x mvnw
+        run: chmod +x ./mvnw
         shell: bash
 
       - name: Build Project with Maven
-        run: /mvnw -Pprod,war clean verify
+        run: ./mvnw -Pprod,war clean verify
         shell: bash
 
       - name: Upload a Build Artifact
