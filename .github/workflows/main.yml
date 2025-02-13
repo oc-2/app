@@ -26,12 +26,20 @@ jobs:
         run: java -version
 
       - name: Set up Maven Wrapper
-        run: |
-          chmod +x mvnw
-          ./mvnw -version
+        run: chmod +x mvnw
         shell: bash
 
       - name: Build Project with Maven
-        run: |
-          ./mvnw -Pprod,war clean verify
+        run: /mvnw -Pprod,war clean verify
         shell: bash
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: artifact
+          path: .
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
