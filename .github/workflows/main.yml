@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: Build Project with Maven
-        run: ./mvnw -Pprod,war clean verify
+        run: ./mvnw clean verify -Pprod,war -X
         shell: bash
 
       - name: Upload a Build Artifact
