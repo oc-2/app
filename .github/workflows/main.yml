@@ -32,8 +32,9 @@ jobs:
         run: chmod +x ./mvnw
         shell: bash
 
-      - name: Build Project with Maven
-        run: ./mvnw clean verify -Pprod,war -X
+      - run: |
+          cd src/main/java/com/app
+          ../../../../../mvnw clean verify -Pprod,war
         shell: bash
 
       - name: Upload a Build Artifact
