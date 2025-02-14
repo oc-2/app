@@ -24,7 +24,10 @@ jobs:
 
       - name: Verify Java Installation
         run: java -version
-
+        
+      - name: Regenerate Maven Wrapper
+        run: mvn -N io.takari:maven:wrapper
+        
       - name: Set up Maven Wrapper
         run: chmod +x ./mvnw
         shell: bash
