@@ -40,7 +40,7 @@
         <blockhound-junit-platform.version>1.0.10.RELEASE</blockhound-junit-platform.version>
         <checkstyle.version>10.21.0</checkstyle.version>
         <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-beanutils.version>20030211.134440</commons-beanutils.version>
         <cucumber-bom.version>7.20.1</cucumber-bom.version>
         <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
         <git-commit-id-maven-plugin.version>9.0.1</git-commit-id-maven-plugin.version>
