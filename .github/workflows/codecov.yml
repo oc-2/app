@@ -1,4 +1,4 @@
-name: Run on specific branch (main)
+name: Codecov
 
 on:
   push:
