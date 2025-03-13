@@ -1,4 +1,5 @@
 # app
+[![codecov](https://codecov.io/gh/oc-2/app/graph/badge.svg?token=D0ZCBF6ZMT)](https://codecov.io/gh/oc-2/app)
 
 An with Vite and Vue with Java
 
