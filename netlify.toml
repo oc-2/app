@@ -1,5 +1,5 @@
 [build]
-  command = "./npmw install && ./npmw run build"
+  command = "./npmw install && npm run build"
   functions = "netlify/functions"
   publish = "build/resources/main/static/assets"
 
