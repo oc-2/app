@@ -38,6 +38,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          
       - name: Set up Snyk CLI to check for security issues
         # Snyk can be used to break the build when it detects security issues.
         # In this case we want to upload the SAST issues to GitHub Code Scanning
