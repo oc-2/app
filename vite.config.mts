@@ -1,5 +1,6 @@
 import { URL, fileURLToPath } from 'node:url';
 import { defineConfig, normalizePath } from 'vite';
+import { codecovVitePlugin } from "@codecov/vite-plugin";
 
 import vue from '@vitejs/plugin-vue';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -23,6 +24,12 @@ const config = defineConfig({
           dest: 'swagger-ui',
         },
       ],
+    }),
+    // Put the Codecov vite plugin after all other plugins
+    codecovVitePlugin({
+      enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+      bundleName: "<bundle project name>",
+      uploadToken: process.env.CODECOV_TOKEN,
     }),
   ],
   root: fileURLToPath(new URL('./src/main/webapp/', import.meta.url)),
