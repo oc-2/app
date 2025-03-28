@@ -1,0 +1,29 @@
+name: Codecov
+
+on:
+  push:
+    branches:
+      - 'main'  # Trigger only when changes are pushed to the `main` branch.
+  pull_request:
+    branches:
+      - 'main'  # Trigger only for pull requests targeting the `main` branch.
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+
+      - name: Output a Coverage report file
+        run: npm install && npm run vitest-run
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: oc-2/app

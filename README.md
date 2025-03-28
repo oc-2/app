@@ -1,4 +1,5 @@
 # app
+[![codecov](https://codecov.io/gh/oc-2/app/graph/badge.svg?token=L83JFSLAF1)](https://codecov.io/gh/oc-2/app)
 
 This application was generated using JHipster 8.8.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.8.0](https://www.jhipster.tech/documentation-archive/v8.8.0).
 
