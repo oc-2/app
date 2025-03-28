@@ -53,7 +53,7 @@ public class SecurityConfiguration {
                 new NegatedServerWebExchangeMatcher(new OrServerWebExchangeMatcher(pathMatchers("/assets/**", "/swagger-ui/**")))
             )
             .cors(withDefaults())
-            .csrf(csrf -> csrf.disable())
+            .csrf(withDefaults())
             .addFilterAfter(new SpaWebFilter(), SecurityWebFiltersOrder.HTTPS_REDIRECT)
             .headers(headers ->
                 headers
