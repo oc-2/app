@@ -111,7 +111,7 @@
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-vue": "9.32.0",
     "flush-promises": "1.0.2",
-    "generator-jhipster": "8.8.0",
+    "generator-jhipster": "8.10.0",
     "happy-dom": "15.11.7",
     "husky": "9.1.7",
     "lint-staged": "15.2.11",
