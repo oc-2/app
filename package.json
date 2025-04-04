@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.0.0",
   "private": true,
-  "description": "Description for App",
+  "description": "An app with Vite and Vue and Java",
   "license": "UNLICENSED",
   "scripts": {
     "app:start": "./gradlew",
