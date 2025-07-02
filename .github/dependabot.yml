@@ -9,20 +9,18 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    allow:
-      - dependency-name: "tech.jhipster:jhipster-framework"
-        version: "8.8.0"
     ignore:
       - dependency-name: "tech.jhipster:jhipster-framework"
-        versions: ["> 8.8.0", "< 8.8.0"]
+        versions:
+          - "< 8.8.0"
+          - "> 8.8.0"
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
-    allow:
-      - dependency-name: "generator-jhipster"
-        version: "8.10.0"
     ignore:
       - dependency-name: "generator-jhipster"
-        versions: ["> 8.10.0", "< 8.10.0"]
+        versions:
+          - "< 8.10.0"
+          - "> 8.10.0"
