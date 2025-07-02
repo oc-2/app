@@ -2,8 +2,8 @@ name: Codecov
 
 permissions:
   contents: read
-  actions: read
-  secrets: read
+  security-events: write
+  actions: write
 
 on:
   push:
