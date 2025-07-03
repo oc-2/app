@@ -31,5 +31,4 @@ github_checks:
   annotations: true
 
 bundle_analysis:
-  warning_threshold: "10MB"
   status: true
