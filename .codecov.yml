@@ -1,0 +1,35 @@
+codecov:
+  require_ci_to_pass: yes
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  after_n_builds: 1
+  show_critical_paths: true
+
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 0%
+    patch:
+      default:
+        target: auto
+        threshold: 0%
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: true
+      loop: true
+      method: true
+      macro: true
+
+github_checks:
+  annotations: true
+
+bundle_analysis:
+  warning_threshold: "10MB"
+  status: true
