@@ -8,11 +8,11 @@ permissions:
 on:
   push:
     branches:
-      - 'main'  # Trigger only when changes are pushed to the `main` branch.
+      - 'main' # Trigger only when changes are pushed to the `main` branch.
   pull_request:
     branches:
-      - 'main'  # Trigger only for pull requests targeting the `main` branch.
-      
+      - 'main' # Trigger only for pull requests targeting the `main` branch.
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v4
 
       - name: Output a Coverage report file
-        run: npm install && npm run vitest-run
+        run: npm install && npm run build
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
