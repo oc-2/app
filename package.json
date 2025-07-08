@@ -95,7 +95,7 @@
   "devDependencies": {
     "@codecov/vite-plugin": "^1.9.1",
     "@eslint/js": "9.17.0",
-    "@pinia/testing": "0.1.7",
+    "@pinia/testing": "1.0.2",
     "@tsconfig/node18": "18.2.4",
     "@types/node": "20.11.25",
     "@types/sinon": "17.0.4",
