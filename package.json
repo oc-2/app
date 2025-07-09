@@ -121,7 +121,7 @@
     "prettier": "3.4.2",
     "prettier-plugin-java": "2.6.5",
     "prettier-plugin-packagejson": "2.5.18",
-    "rimraf": "5.0.8",
+    "rimraf": "6.0.1",
     "sass": "1.89.2",
     "sinon": "21.0.0",
     "swagger-ui-dist": "5.18.2",
