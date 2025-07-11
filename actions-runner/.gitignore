@@ -1,0 +1,40 @@
+# Environment files
+.env
+{}.credentials
+{}.credentials_rsparams
+
+# Log files
+_diag/
+*.log
+
+# Temporary and build files
+bin/
+.gradle/
+build/
+out/
+target/
+
+# Java class files
+*.class
+
+# IDE-specific files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+nbproject/private/
+nbbuild/
+dist/
+*.nb-gradle*
+!gradle-wrapper.properties
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Scripts
+.runner
+env.sh
+run.sh
+safe_sleep.sh
