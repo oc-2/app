@@ -8,7 +8,7 @@ on:
 
 permissions:
   contents: write
-  mediadata: read
+  security-events: read
 
 jobs:
   submit-gradle:
