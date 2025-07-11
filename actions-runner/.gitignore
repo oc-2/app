@@ -36,5 +36,4 @@ Thumbs.db
 # Scripts
 .runner
 env.sh
-run.sh
 safe_sleep.sh
