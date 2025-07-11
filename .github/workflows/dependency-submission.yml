@@ -1,0 +1,102 @@
+name: Dependency Submission (Gradle)
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['*']
+
+permissions:
+  contents: write
+  mediadata: read
+
+jobs:
+  submit-gradle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: oc-2/app
+          ref: ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh-strict: true
+          ssh-user: git
+          persist-credentials: true
+          clean: true
+          sparse-checkout-cone-mode: true
+          fetch-depth: 1
+          fetch-tags: false
+          show-progress: true
+          lfs: false
+          submodules: false
+          set-safe-directory: true
+
+      - name: setup-ecosystem
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          overwrite-settings: false
+          java-version: 17
+          distribution: temurin
+          java-package: jdk
+          check-latest: false
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+          job-status: success
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: configure-cache
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-jdk17-temurin-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-jdk17-temurin-gradle-
+          enableCrossOsArchive: false
+          fail-on-cache-miss: false
+          lookup-only: false
+          save-always: false
+
+      - name: Validate Gradle project
+        id: validate-gradle
+        shell: bash
+        run: |
+          if ./gradlew help; then
+            echo "::debug::Gradle validate repository root is a Gradle project with wrapper."
+            echo "{valid-project}={true}" >> "$GITHUB_OUTPUT"
+          elif gradle help; then
+            echo "::debug::Gradle validate repository root is a Gradle project."
+            echo "{valid-project}={true}" >> "$GITHUB_OUTPUT"
+          else
+            echo "{valid-project}={false}" >> "$GITHUB_OUTPUT"
+            echo "### :warning: Gradle validation failed in repository root" >> $GITHUB_STEP_SUMMARY
+            echo "We were unable to validate a Gradle project in the repository root. If your repository requires additional setup steps, you may need to check in your own workflow." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "For more information on submitting Gradle dependencies from your own workflow, refer to [the submission action](https://github.com/gradle/actions)" >> $GITHUB_STEP_SUMMARY
+            echo "::warning:: Gradle validation failed in the repository root."
+            exit 1
+          fi
+
+      - name: Generate and submit dependency graph
+        uses: actions/gradle-build-tools-actions/dependency-submission@8379f6a1328ee0e06e2bb424dadb7b159856a326
+        with:
+          gradle-version: '8.12'
+          cache-disabled: false
+          cache-read-only: true
+          cache-write-only: false
+          cache-overwrite-existing: false
+          cache-cleanup: on-success
+          gradle-home-cache-includes: caches
+          add-job-summary: always
+          add-job-summary-as-pr-comment: never
+          dependency-graph: generate-submit-and-upload
+          dependency-graph-report-dir: dependency-graph-reports
+          dependency-graph-continue-on-failure: false
+          build-scan-publish: true
+          build-scan-terms-of-use-url: 'https://gradle.com/help/legal-terms-of-use'
+          build-scan-terms-of-use-agree: 'yes'
+          validate-wrappers: false
+          allow-snapshot-wrappers: false
+          gradle-home-cache-strict-match: false
+          workflow-job-context: null
+          github-token: ${{ secrets.GITHUB_TOKEN }}

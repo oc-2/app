@@ -1,27 +1,26 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'daily'
 
-  - package-ecosystem: "gradle"
-    directory: "/"
+  - package-ecosystem: 'gradle'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     ignore:
-      - dependency-name: "tech.jhipster:jhipster-framework"
+      - dependency-name: 'tech.jhipster:jhipster-framework'
         versions:
-          - "< 8.8.0"
-          - "> 8.8.0"
+          - '< 8.8.0'
+          - '> 8.8.0'
 
-  - package-ecosystem: "npm"
-    directory: "/"
-    open-pull-requests-limit: 6
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'weekly'
     ignore:
-      - dependency-name: "generator-jhipster"
+      - dependency-name: 'generator-jhipster'
         versions:
-          - "< 8.10.0"
-          - "> 8.10.0"
+          - '< 8.10.0'
+          - '> 8.10.0'
