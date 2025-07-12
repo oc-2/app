@@ -8,7 +8,6 @@ _diag/
 *.log
 
 # Temporary and build files
-bin/
 .gradle/
 build/
 out/
@@ -36,4 +35,3 @@ Thumbs.db
 # Scripts
 .runner
 env.sh
-safe_sleep.sh
