@@ -8,14 +8,14 @@ permissions:
 on:
   push:
     branches:
-      - 'main' # Trigger only when changes are pushed to the `main` branch.
+      - 'main'
   pull_request:
     branches:
-      - 'main' # Trigger only for pull requests targeting the `main` branch.
+      - 'main'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-13
 
     steps:
       - name: Checkout code
