@@ -119,7 +119,7 @@
     "postcss-import": "16.1.0",
     "postcss-url": "10.1.3",
     "prettier": "3.4.2",
-    "prettier-plugin-java": "2.6.5",
+    "prettier-plugin-java": "2.7.4",
     "prettier-plugin-packagejson": "2.5.18",
     "rimraf": "5.0.8",
     "sass": "1.89.2",
