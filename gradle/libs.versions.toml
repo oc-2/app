@@ -10,5 +10,5 @@ commons-beanutils = { module = "commons-beanutils:commons-beanutils", version = 
 # jhipster-needle-gradle-dependency-catalog-libraries - JHipster will add additional libraries versions
 
 [plugins]
-spring-boot = { id = "org.springframework.boot", version = "3.5.3" }
+spring-boot = { id = "org.springframework.boot", version = "3.5.5" }
 # jhipster-needle-gradle-dependency-catalog-plugins - JHipster will add additional plugins versions
