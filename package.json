@@ -109,7 +109,7 @@
     "eslint": "9.17.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
-    "eslint-plugin-vue": "9.32.0",
+    "eslint-plugin-vue": "10.4.0",
     "flush-promises": "1.0.2",
     "generator-jhipster": "8.10.0",
     "happy-dom": "15.11.7",
