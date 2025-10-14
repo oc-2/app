@@ -4,3 +4,13 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    ignore:
+      - dependency-name: 'generator-jhipster'
+        versions:
+          - '< 8.10.0'
+          - '> 8.10.0'
