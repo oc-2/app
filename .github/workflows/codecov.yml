@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
 
       - name: Output a Coverage report file
         run: npm install && npm run vitest-run -- --coverage.reporter=lcov
